@@ -938,102 +938,102 @@ using namespace std;
   {
     MATCH_STRUCT(x86_thread_state,NSMaxRange(range))
     
-    [dataController read_uint32:range lastReadHex:&lastReadHex];
-    [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
-                           :lastReadHex
-                           :@"Flavor"
-                           :x86_thread_state->tsh.flavor == x86_THREAD_STATE32 ? @"x86_THREAD_STATE32" :
-                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE32 ? @"x86_FLOAT_STATE32" :
-                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE32 ? @"x86_EXCEPTION_STATE32" :
-                            x86_thread_state->tsh.flavor == x86_THREAD_STATE64 ? @"x86_THREAD_STATE64" :                                     
-                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE64 ? @"x86_FLOAT_STATE64" :
-                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE64 ? @"x86_EXCEPTION_STATE64" :
-                            x86_thread_state->tsh.flavor == x86_THREAD_STATE ? @"x86_THREAD_STATE" :
-                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE ? @"x86_FLOAT_STATE" :
-                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE ? @"x86_EXCEPTION_STATE" :
-                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE32 ? @"x86_DEBUG_STATE32" :
-                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE64 ? @"x86_DEBUG_STATE64" :
-                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE ? @"x86_DEBUG_STATE" :
-                            x86_thread_state->tsh.flavor == THREAD_STATE_NONE ? @"THREAD_STATE_NONE" : @"???"];
+//    [dataController read_uint32:range lastReadHex:&lastReadHex];
+//    [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
+//                           :lastReadHex
+//                           :@"Flavor"
+//                           :x86_thread_state->tsh.flavor == x86_THREAD_STATE32 ? @"x86_THREAD_STATE32" :
+//                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE32 ? @"x86_FLOAT_STATE32" :
+//                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE32 ? @"x86_EXCEPTION_STATE32" :
+//                            x86_thread_state->tsh.flavor == x86_THREAD_STATE64 ? @"x86_THREAD_STATE64" :                                     
+//                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE64 ? @"x86_FLOAT_STATE64" :
+//                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE64 ? @"x86_EXCEPTION_STATE64" :
+//                            x86_thread_state->tsh.flavor == x86_THREAD_STATE ? @"x86_THREAD_STATE" :
+//                            x86_thread_state->tsh.flavor == x86_FLOAT_STATE ? @"x86_FLOAT_STATE" :
+//                            x86_thread_state->tsh.flavor == x86_EXCEPTION_STATE ? @"x86_EXCEPTION_STATE" :
+//                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE32 ? @"x86_DEBUG_STATE32" :
+//                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE64 ? @"x86_DEBUG_STATE64" :
+//                            x86_thread_state->tsh.flavor == x86_DEBUG_STATE ? @"x86_DEBUG_STATE" :
+//                            x86_thread_state->tsh.flavor == THREAD_STATE_NONE ? @"THREAD_STATE_NONE" : @"???"];
     
-    [dataController read_uint32:range lastReadHex:&lastReadHex];
-    [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
-                           :lastReadHex
-                           :@"Count"
-                           :[NSString stringWithFormat:@"%u", x86_thread_state->tsh.count]];
+//    [dataController read_uint32:range lastReadHex:&lastReadHex];
+//    [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
+//                           :lastReadHex
+//                           :@"Count"
+//                           :[NSString stringWithFormat:@"%u", x86_thread_state->tsh.count]];
     
-    [node.details setAttributes:MVUnderlineAttributeName,@"YES",nil];
+//    [node.details setAttributes:MVUnderlineAttributeName,@"YES",nil];
     
-    if (x86_thread_state->tsh.flavor == x86_THREAD_STATE32)
-    {
-      entryPoint = x86_thread_state->uts.ts32.__eip;
-
-      NSDictionary * stateDict = @{@"eax":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eax],
-                                   @"ebx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ebx],
-                                   @"ecx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ecx],
-                                   @"edx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__edx],
-                                   @"edi":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__edi],
-                                   @"esi":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__esi],
-                                   @"ebp":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ebp],
-                                   @"esp":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__esp],
-                                   @"ss":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ss],
-                                   @"eflags": [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eflags],
-                                   @"eip":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eip],
-                                   @"cs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__cs],
-                                   @"ds":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ds],
-                                   @"es":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__es],
-                                   @"fs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__fs],
-                                   @"gs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__gs]};
-      
-      for (id key in @[@"eax",@"ebx",@"ecx",@"edx",
-                      @"edi",@"esi",@"ebp",@"esp",
-                      @"ss",@"eflags",@"eip",@"cs", 
-                      @"ds",@"es",@"fs",@"gs"]) 
-      {
-        [dataController read_uint32:range lastReadHex:&lastReadHex];
-        [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
-                               :lastReadHex
-                               :key
-                               :stateDict[key]];
-      }
-    }
-    else if (x86_thread_state->tsh.flavor == x86_THREAD_STATE64)
-    {
-      entryPoint = x86_thread_state->uts.ts64.__rip;
-      
-      NSDictionary * stateDict = @{@"rax":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rax],
-                                   @"rbx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rbx],
-                                   @"rcx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rcx],
-                                   @"rdx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rdx],
-                                   @"rdi":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rdi],
-                                   @"rsi":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rsi],
-                                   @"rbp":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rbp],
-                                   @"rsp":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rsp],
-                                   @"r8":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r8],
-                                   @"r9":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r9],
-                                   @"r10":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r10],
-                                   @"r11":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r11],
-                                   @"r12":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r12],
-                                   @"r13":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r13],
-                                   @"r14":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r14],
-                                   @"r15":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r15],
-                                   @"rip":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rip],
-                                   @"rflags": [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rflags],
-                                   @"cs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__cs],
-                                   @"fs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__fs],
-                                   @"gs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__gs]};
-      
-      for (id key in @[@"rax",@"rbx",@"rcx",@"rdx",@"rdi",@"rsi",@"rbp",@"rsp",
-                      @"r8",@"r9", @"r10", @"r11", @"r12", @"r13", @"r14", @"r15", 
-                      @"rip",@"rflags",@"cs",@"fs", @"gs"])
-      {
-        [dataController read_uint64:range lastReadHex:&lastReadHex];
-        [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
-                               :lastReadHex
-                               :key
-                               :stateDict[key]];
-      }
-    }
+//    if (x86_thread_state->tsh.flavor == x86_THREAD_STATE32)
+//    {
+//      entryPoint = x86_thread_state->uts.ts32.__eip;
+//
+//      NSDictionary * stateDict = @{@"eax":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eax],
+//                                   @"ebx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ebx],
+//                                   @"ecx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ecx],
+//                                   @"edx":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__edx],
+//                                   @"edi":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__edi],
+//                                   @"esi":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__esi],
+//                                   @"ebp":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ebp],
+//                                   @"esp":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__esp],
+//                                   @"ss":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ss],
+//                                   @"eflags": [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eflags],
+//                                   @"eip":    [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__eip],
+//                                   @"cs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__cs],
+//                                   @"ds":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__ds],
+//                                   @"es":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__es],
+//                                   @"fs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__fs],
+//                                   @"gs":     [NSString stringWithFormat:@"%u",x86_thread_state->uts.ts32.__gs]};
+//      
+//      for (id key in @[@"eax",@"ebx",@"ecx",@"edx",
+//                      @"edi",@"esi",@"ebp",@"esp",
+//                      @"ss",@"eflags",@"eip",@"cs", 
+//                      @"ds",@"es",@"fs",@"gs"]) 
+//      {
+//        [dataController read_uint32:range lastReadHex:&lastReadHex];
+//        [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
+//                               :lastReadHex
+//                               :key
+//                               :stateDict[key]];
+//      }
+//    }
+//    else if (x86_thread_state->tsh.flavor == x86_THREAD_STATE64)
+//    {
+//      entryPoint = x86_thread_state->uts.ts64.__rip;
+//      
+//      NSDictionary * stateDict = @{@"rax":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rax],
+//                                   @"rbx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rbx],
+//                                   @"rcx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rcx],
+//                                   @"rdx":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rdx],
+//                                   @"rdi":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rdi],
+//                                   @"rsi":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rsi],
+//                                   @"rbp":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rbp],
+//                                   @"rsp":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rsp],
+//                                   @"r8":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r8],
+//                                   @"r9":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r9],
+//                                   @"r10":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r10],
+//                                   @"r11":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r11],
+//                                   @"r12":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r12],
+//                                   @"r13":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r13],
+//                                   @"r14":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r14],
+//                                   @"r15":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__r15],
+//                                   @"rip":    [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rip],
+//                                   @"rflags": [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__rflags],
+//                                   @"cs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__cs],
+//                                   @"fs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__fs],
+//                                   @"gs":     [NSString stringWithFormat:@"%qu",x86_thread_state->uts.ts64.__gs]};
+//      
+//      for (id key in @[@"rax",@"rbx",@"rcx",@"rdx",@"rdi",@"rsi",@"rbp",@"rsp",
+//                      @"r8",@"r9", @"r10", @"r11", @"r12", @"r13", @"r14", @"r15", 
+//                      @"rip",@"rflags",@"cs",@"fs", @"gs"])
+//      {
+//        [dataController read_uint64:range lastReadHex:&lastReadHex];
+//        [node.details appendRow:[NSString stringWithFormat:@"%.8lX", range.location]
+//                               :lastReadHex
+//                               :key
+//                               :stateDict[key]];
+//      }
+//    }
   }
   else if (mach_header->cputype == CPU_TYPE_ARM)
   {

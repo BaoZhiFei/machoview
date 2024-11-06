@@ -11,7 +11,7 @@ enum byte_sex
   LITTLE_ENDIAN_BYTE_SEX
 };
 
-typedef signed char BOOL;
+typedef bool BOOL;
 //#define TRUE    ((BOOL)1)
 //#define FALSE   ((BOOL)0)
 
@@ -19,7 +19,7 @@ typedef signed char BOOL;
 extern BOOL vflag; /* print verbosely (symbolically) when possible */
 extern BOOL Vflag; /* print dissassembled operands verbosely */
 extern BOOL qflag; /* use 'C' Public llvm-mc disassembler */
-extern BOOL gflag; /* group the disassembly */
+//extern BOOL gflag; /* group the disassembly */
 
 extern BOOL in_thumb;
 
@@ -47,7 +47,7 @@ struct dyld_bind_info {
 extern "C" {
   
   int
-  sym_compare(
+sym_compare(
               struct symbol *sym1,
               struct symbol *sym2
               );

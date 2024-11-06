@@ -20,7 +20,7 @@
 
 - (IBAction)toggleUseLLVMDisassembler:(id)sender
 {
-  qflag = (useLLVMDisassembler.state == NSOnState);
+//  qflag = (useLLVMDisassembler.state == NSOnState);
 }
 
 @end
